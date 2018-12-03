@@ -11,7 +11,7 @@ namespace DapperPlus.Test
 {
     public class DapperPlusTest
     {
-        private DapperPlus<MySqlConnection> dapper=new DapperPlus<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xinzhe&468SQL;");
+        private DapperPlus<MySqlConnection> dapper=new DapperPlus<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xxx;");
         
        [Fact]
        public async Task InsertTest()
