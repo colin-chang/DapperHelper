@@ -24,7 +24,6 @@ namespace Dapper
         public DapperPlus(string dbConnectionStr)
         {
             _connStr = dbConnectionStr;
-            
         }
 
         /// <summary>
