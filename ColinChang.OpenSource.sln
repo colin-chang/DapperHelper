@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperPlus.Test", "DapperPlus.Test\DapperPlus.Test.csproj", "{ECA6836C-A467-403B-888C-B55E25162DDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinChang.OpenSource.DapperPlus.Test", "ColinChang.OpenSource.DapperPlus.Test\ColinChang.OpenSource.DapperPlus.Test.csproj", "{ECA6836C-A467-403B-888C-B55E25162DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperPlus", "DapperPlus\DapperPlus.csproj", "{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinChang.OpenSource.DapperPlus", "ColinChang.OpenSource.DapperPlus\ColinChang.OpenSource.DapperPlus.csproj", "{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

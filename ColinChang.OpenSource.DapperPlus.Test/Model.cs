@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DapperPlus.Test
+namespace ColinChang.OpenSource.DapperPlus.Test
 {
     public abstract class BaseModel
     {

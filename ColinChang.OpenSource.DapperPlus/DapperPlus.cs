@@ -6,24 +6,23 @@ using System.Threading.Tasks;
 
 namespace Dapper
 {
-    public class DapperPlus<T>
-        where T:IDbConnection,new()
+    public class DapperPlus<TConnection>
+        where TConnection:IDbConnection,new()
     {
         private  readonly string _connStr;
         private IDbConnection Cnn
         {
             get
             {
-                var cn= new T();
-                cn.ConnectionString = _connStr;
+                var cn = new TConnection {ConnectionString = _connStr};
                 return cn;
             }
         }
 
 
-        public DapperPlus(string dbConnectionStr)
+        public DapperPlus(string connectionString)
         {
-            _connStr = dbConnectionStr;
+            _connStr = connectionString;
         }
 
         /// <summary>
@@ -146,7 +145,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                return cnn.Query<TFirst, TSecond, TReturn>(sql, map, param, commandType: commandType,
+                return cnn.Query(sql, map, param, commandType: commandType,
                     buffered: buffered);
             }
         }
@@ -172,7 +171,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                return await cnn.QueryAsync<TFirst, TSecond, TReturn>(sql, map, param, commandType: commandType,
+                return await cnn.QueryAsync(sql, map, param, commandType: commandType,
                     buffered: buffered);
             }
         }
@@ -200,7 +199,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                return cnn.Query<TFirst, TSecond, TThird, TReturn>(sql, map, param, commandType: commandType,
+                return cnn.Query(sql, map, param, commandType: commandType,
                     buffered: buffered);
             }
         }
@@ -228,7 +227,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                return await cnn.QueryAsync<TFirst, TSecond, TThird, TReturn>(sql, map, param, commandType: commandType,
+                return await cnn.QueryAsync(sql, map, param, commandType: commandType,
                     buffered: buffered);
             }
         }
@@ -247,7 +246,7 @@ namespace Dapper
             {
                 var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
                 var results = new IEnumerable<object>[sqls.Count()];
-                for (int i = 0; i < sqls.Count(); i++)
+                for (var i = 0; i < sqls.Count(); i++)
                     results[i] = reader.Read();
 
                 return results;
@@ -268,7 +267,7 @@ namespace Dapper
             {
                 var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
                 var results = new IEnumerable<object>[sqls.Count()];
-                for (int i = 0; i < sqls.Count(); i++)
+                for (var i = 0; i < sqls.Count(); i++)
                     results[i] = await reader.ReadAsync();
 
                 return results;
@@ -389,7 +388,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                int count = 0;
+                var count = 0;
                 IDbTransaction tran = null;
                 try
                 {
@@ -418,7 +417,7 @@ namespace Dapper
         {
             using (var cnn = Cnn)
             {
-                int count = 0;
+                var count = 0;
                 IDbTransaction tran = null;
                 try
                 {

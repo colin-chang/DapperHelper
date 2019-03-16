@@ -1,9 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>DapperPlus.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DapperPlus\DapperPlus.csproj" />
+    <ProjectReference Include="..\ColinChang.OpenSource.DapperPlus\ColinChang.OpenSource.DapperPlus.csproj" />
   </ItemGroup>
 
 </Project>
