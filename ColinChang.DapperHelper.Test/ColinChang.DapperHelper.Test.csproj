@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ColinChang.OpenSource.DapperPlus\ColinChang.OpenSource.DapperPlus.csproj" />
+    <ProjectReference Include="..\ColinChang.DapperHelper\ColinChang.DapperHelper.csproj" />
   </ItemGroup>
 
 </Project>

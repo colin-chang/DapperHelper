@@ -19,7 +19,6 @@ namespace Dapper
             }
         }
 
-
         public DapperPlus(string connectionString)
         {
             _connStr = connectionString;
