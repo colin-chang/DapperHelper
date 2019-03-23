@@ -4,3 +4,12 @@ Dapper仅提供了SqlHelper常用功能和对象映射，我们通常会对Dappe
 
 
 本项目封装内容介绍和Dapper简介及使用 参见文档 https://github.com/colin-chang/netcore/blob/master/pages/dapper.md
+
+**[Nuget](https://www.nuget.org/packages/ColinChang.DapperHelper/)**
+```sh
+# Package Manager
+Install-Package ColinChang.DapperHelper
+
+# .NET CLI
+dotnet add package ColinChang.DapperHelper
+```
