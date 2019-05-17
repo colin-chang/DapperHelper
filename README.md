@@ -1,6 +1,6 @@
-## DapperHelper
-Dapper仅提供了SqlHelper常用功能和对象映射，我们通常会对Dapper进行二次封装扩展以更方便的使用Dapper。
-下面Dapper扩展在无损Dapper性能的前提下，基本覆盖了日常数据操作，仅供参考。
+Dapper is a simple object mapper for .NET and own the title of King of Micro ORM in terms of speed and is virtually as fast as using a raw ADO.NET data reader. However,Dappper just provides the most simple method like an SqlHelper.In most cases, we choose to re-encapsulate the Dappper for easier useage.
+
+DapperHelper is a common utility based on Dapper,it just provides some useful help for common CRUD operations.
 
 **[Nuget](https://www.nuget.org/packages/ColinChang.DapperHelper/)**
 ```sh
@@ -11,4 +11,6 @@ Install-Package ColinChang.DapperHelper
 dotnet add package ColinChang.DapperHelper
 ```
 
-本项目封装内容介绍和Dapper简介及使用 参见文档 https://github.com/colin-chang/netcore/blob/master/pages/dapper.md
+About how it works and some simple introductions of Dapper can be found by the link below.
+
+https://colin-chang.site/netcore/pages/dapper.html
