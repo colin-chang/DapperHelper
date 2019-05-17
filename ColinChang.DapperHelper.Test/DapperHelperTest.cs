@@ -6,11 +6,11 @@ using Xunit;
 using Dapper;
 using MySql.Data.MySqlClient;
 
-namespace ColinChang.OpenSource.DapperPlus.Test
+namespace ColinChang.DapperHelper.Test
 {
-    public class DapperPlusTest
+    public class DapperHelperTest
     {
-        private readonly DapperPlus<MySqlConnection> _dapper=new DapperPlus<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xxx;");
+        private readonly DapperHelper<MySqlConnection> _dapper=new DapperHelper<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xxx;");
         
        [Fact]
        public async Task InsertTest()

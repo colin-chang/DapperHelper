@@ -1,18 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Colin Chang</Authors>
-    <Description>A common dapper helper based on Dapper.</Description>
+    <Description>This is a common utility based on Dapper,it just provides some useful help for common CRUD operations.</Description>
     <Copyright>https://colin-chang.site/</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/colin-chang/DapperHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
+    <Version>1.0.1</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes>1.update dependencies
+2.rename main object to "DapperHelper"</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

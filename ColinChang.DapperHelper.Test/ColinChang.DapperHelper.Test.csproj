@@ -4,16 +4,17 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <RootNamespace>DapperPlus.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-    <PackageReference Include="Dapper" Version="1.50.5" />
-    <PackageReference Include="MySql.Data" Version="8.0.13" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="MySql.Data" Version="8.0.16" />
   </ItemGroup>
 
   <ItemGroup>

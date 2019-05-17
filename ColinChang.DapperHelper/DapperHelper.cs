@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dapper
 {
-    public class DapperPlus<TConnection>
+    public class DapperHelper<TConnection>
         where TConnection:IDbConnection,new()
     {
         private  readonly string _connStr;
@@ -19,7 +19,7 @@ namespace Dapper
             }
         }
 
-        public DapperPlus(string connectionString)
+        public DapperHelper(string connectionString)
         {
             _connStr = connectionString;
         }
