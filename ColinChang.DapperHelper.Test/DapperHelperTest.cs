@@ -89,7 +89,7 @@ namespace ColinChang.DapperHelper.Test
                         articles.Add(article.Id, articleEntry);
                     }
 
-                    articleEntry.Comments.Append(comment);
+                    articleEntry.Comments = articleEntry.Comments.Append(comment);
                     return articleEntry;
                 });
             var result1 = data.Distinct();
