@@ -3,17 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Colin Chang</Authors>
-    <Description>This is a common utility based on Dapper,it just provides some useful help for common CRUD operations.</Description>
+    <Description>A Dapper wrapper which provides some useful helper for common data operations.</Description>
     <Copyright>https://colin-chang.site/</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/colin-chang/DapperHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>1.update dependencies
-2.rename main object to "DapperHelper"</PackageReleaseNotes>
+    <PackageReleaseNotes>add 2 new overload methods "ExecuteTransaction"</PackageReleaseNotes>
+    <PackageIconUrl>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/dapper.ico</PackageIconUrl>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Title>DapperHelper</Title>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
