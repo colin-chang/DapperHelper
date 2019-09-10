@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace Dapper
 {
     public class DapperHelper<TConnection>
-        where TConnection:IDbConnection,new()
+        where TConnection : IDbConnection, new()
     {
-        private  readonly string _connStr;
+        private readonly string _connStr;
+
         private IDbConnection Cnn
         {
             get
@@ -408,6 +409,56 @@ namespace Dapper
         }
 
         /// <summary>
+        /// Execute a transaction with the specify operation inside
+        /// </summary>
+        /// <param name="transaction">transaction operation</param>
+        public void ExecuteTransaction(Action<IDbConnection> transaction)
+        {
+            using (var cnn = Cnn)
+            {
+                IDbTransaction tran = null;
+                try
+                {
+                    cnn.Open();
+                    tran = cnn.BeginTransaction();
+                    transaction(cnn);
+                    tran.Commit();
+                }
+                catch
+                {
+                    tran?.Rollback();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Execute a transaction with the specify operation inside
+        /// </summary>
+        /// <param name="transaction">transaction operation</param>
+        /// <typeparam name="TResult">return value type of the transaction operation</typeparam>
+        /// <returns>return value of the transaction operation</returns>
+        public TResult ExecuteTransaction<TResult>(Func<IDbConnection, TResult> transaction)
+        {
+            using (var cnn = Cnn)
+            {
+                IDbTransaction tran = null;
+                try
+                {
+                    cnn.Open();
+                    tran = cnn.BeginTransaction();
+                    var result = transaction(cnn);
+                    tran.Commit();
+                    return result;
+                }
+                catch
+                {
+                    tran?.Rollback();
+                    return default(TResult);
+                }
+            }
+        }
+
+        /// <summary>
         /// Execute a nonquery transaction asynchronously.
         /// </summary>
         /// <param name="scripts">The 'SqlScript' set of this transaction to execute.</param>
@@ -437,7 +488,7 @@ namespace Dapper
             }
         }
     }
-    
+
     public class SqlScript
     {
         public string Sql { get; set; }

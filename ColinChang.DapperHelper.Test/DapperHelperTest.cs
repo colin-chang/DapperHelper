@@ -5,22 +5,31 @@ using System.Threading.Tasks;
 using Xunit;
 using Dapper;
 using MySql.Data.MySqlClient;
+using Xunit.Abstractions;
 
 namespace ColinChang.DapperHelper.Test
 {
     public class DapperHelperTest
     {
-        private readonly DapperHelper<MySqlConnection> _dapper=new DapperHelper<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xxx;");
-        
-       [Fact]
-       public async Task InsertTest()
-       {
-           const string sql = "INSERT INTO author (NickName,RealName) VALUES(@nickName,@RealName)";
-           var affected = await _dapper.ExecuteAsync(sql,
-               new[] {new Author("Colin", "Colin Chang"), new Author("Robin", "Robin Song")});
+        private readonly ITestOutputHelper _testOutputHelper;
 
-           Assert.Equal(2, affected);
-       }
+        private readonly DapperHelper<MySqlConnection> _dapper =
+            new DapperHelper<MySqlConnection>("Server=127.0.0.1;Database=db_dapper;Uid=root;Pwd=xxx;");
+
+        public DapperHelperTest(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
+
+        [Fact]
+        public async Task InsertTest()
+        {
+            const string sql = "INSERT INTO author (NickName,RealName) VALUES(@nickName,@RealName)";
+            var affected = await _dapper.ExecuteAsync(sql,
+                new[] {new Author("Colin", "Colin Chang"), new Author("Robin", "Robin Song")});
+
+            Assert.Equal(2, affected);
+        }
 
         [Fact]
         public async Task UpdateTest()
@@ -112,7 +121,7 @@ namespace ColinChang.DapperHelper.Test
         [Fact]
         public async Task MultiQueryTest()
         {
-            var sqls = new []
+            var sqls = new[]
             {
                 "SELECT * FROM article WHERE Id=@id",
                 "SELECT * FROM `comment` WHERE ArticleId=@articleId"
@@ -130,13 +139,28 @@ namespace ColinChang.DapperHelper.Test
         [Fact]
         public async Task TransactionTest()
         {
-            var affected = await _dapper.ExecuteTransactionAsync(new []
+            var affected = await _dapper.ExecuteTransactionAsync(new[]
             {
                 new SqlScript("UPDATE article SET UpdateTime=NOW() WHERE Id=@id", new {id = 2}),
                 new SqlScript("UPDATE author SET BirthDate=NOW() WHERE Id=@id", new {id = 1})
             });
 
             Assert.Equal(2, affected);
+        }
+
+        [Fact]
+        public async Task TransactionWithOperationTest()
+        {
+            var affected = _dapper.ExecuteTransaction(async cnn =>
+            {
+                var current = await cnn.QueryAsync<Author>("SELECT * FROM author WHERE Id=1 FOR UPDATE");
+
+                _testOutputHelper.WriteLine(current.FirstOrDefault()?.RealName);
+
+                return await cnn.ExecuteAsync("UPDATE author SET NickName='Colin Chang' WHERE Id=1");
+            });
+
+            Assert.Equal(1, await affected);
         }
     }
 }
