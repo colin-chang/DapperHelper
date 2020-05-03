@@ -97,7 +97,6 @@ namespace Dapper
         /// <returns>A sequence of data of T; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is created per row,and a direct column-name===member-name mapping is assumed (case insensitive).</returns>
         public IEnumerable<T> Query<T>(string sql, object param = null, CommandType? commandType = null,
             bool buffered = true)
-            where T : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -116,7 +115,6 @@ namespace Dapper
         /// <returns>A sequence of data of T; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is created per row,and a direct column-name===member-name mapping is assumed (case insensitive).</returns>
         public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null,
             CommandType? commandType = null, bool buffered = true)
-            where T : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -139,9 +137,6 @@ namespace Dapper
         public IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(string sql,
             Func<TFirst, TSecond, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TReturn : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -165,9 +160,6 @@ namespace Dapper
         public async Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TReturn>(string sql,
             Func<TFirst, TSecond, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TReturn : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -192,10 +184,6 @@ namespace Dapper
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string sql,
             Func<TFirst, TSecond, TThird, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TThird : class, new()
-            where TReturn : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -220,10 +208,6 @@ namespace Dapper
         public async Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(string sql,
             Func<TFirst, TSecond, TThird, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TThird : class, new()
-            where TReturn : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -285,8 +269,6 @@ namespace Dapper
         /// <returns>Multiple result sets</returns>
         public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2) QueryMultiple<TFirst, TSecond>(
             IEnumerable<string> sqls, object param = null, CommandType? commandType = null)
-            where TFirst : class, new()
-            where TSecond : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -310,8 +292,6 @@ namespace Dapper
         public async Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2)>
             QueryMultipleAsync<TFirst, TSecond>(IEnumerable<string> sqls, object param = null,
                 CommandType? commandType = null)
-            where TFirst : class, new()
-            where TSecond : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -335,9 +315,6 @@ namespace Dapper
         /// <returns>Multiple result sets</returns>
         public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)
             QueryMultiple<TFirst, TSecond, TThird>(string sqls, object param = null, CommandType? commandType = null)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TThird : class, new()
         {
             using (var cnn = Cnn)
             {
@@ -364,9 +341,6 @@ namespace Dapper
             Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)>
             QueryMultipleAsync<TFirst, TSecond, TThird>(string sqls, object param = null,
                 CommandType? commandType = null)
-            where TFirst : class, new()
-            where TSecond : class, new()
-            where TThird : class, new()
         {
             using (var cnn = Cnn)
             {
