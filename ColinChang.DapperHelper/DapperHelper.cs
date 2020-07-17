@@ -314,11 +314,12 @@ namespace Dapper
         /// <typeparam name="TThird">The type of the third sql recordset.</typeparam>
         /// <returns>Multiple result sets</returns>
         public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)
-            QueryMultiple<TFirst, TSecond, TThird>(string sqls, object param = null, CommandType? commandType = null)
+            QueryMultiple<TFirst, TSecond, TThird>(IEnumerable<string> sqls, object param = null,
+                CommandType? commandType = null)
         {
             using (var cnn = Cnn)
             {
-                var reader = cnn.QueryMultiple(sqls, param, commandType: commandType);
+                var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
                 var result1 = reader.Read<TFirst>();
                 var result2 = reader.Read<TSecond>();
                 var result3 = reader.Read<TThird>();
@@ -339,12 +340,12 @@ namespace Dapper
         /// <returns>Multiple result sets</returns>
         public async
             Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)>
-            QueryMultipleAsync<TFirst, TSecond, TThird>(string sqls, object param = null,
+            QueryMultipleAsync<TFirst, TSecond, TThird>(IEnumerable<string> sqls, object param = null,
                 CommandType? commandType = null)
         {
             using (var cnn = Cnn)
             {
-                var reader = await cnn.QueryMultipleAsync(sqls, param, commandType: commandType);
+                var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
                 var result1 = await reader.ReadAsync<TFirst>();
                 var result2 = await reader.ReadAsync<TSecond>();
                 var result3 = await reader.ReadAsync<TThird>();

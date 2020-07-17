@@ -10,13 +10,13 @@
     <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>1. remove genericity constraints
+    <PackageReleaseNotes>1. update parameters of QueryMultipleAsync 
 2. update dependencies.</PackageReleaseNotes>
     <PackageIconUrl>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/dapper.ico</PackageIconUrl>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
+    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <FileVersion>1.1.2.0</FileVersion>
     <Title>DapperHelper</Title>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>default</LangVersion>
