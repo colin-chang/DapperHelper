@@ -5,21 +5,20 @@
     <Authors>Colin Chang</Authors>
     <Description>A Dapper wrapper which provides some useful helper for common data operations.</Description>
     <Copyright>https://ccstudio.org</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/colin-chang/DapperHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>1. update parameters of QueryMultipleAsync 
-2. update dependencies.</PackageReleaseNotes>
-    <PackageIconUrl>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/dapper.ico</PackageIconUrl>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
+    <PackageReleaseNotes>overload two more "QueryMultiple" and "QueryMultipleAsync" methods</PackageReleaseNotes>
+    <PackageIcon>icon.png</PackageIcon>
+    <AssemblyVersion>1.1.3.0</AssemblyVersion>
+    <FileVersion>1.1.3.0</FileVersion>
     <Title>DapperHelper</Title>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>default</LangVersion>
+    <PackageLicense>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/LICENSE</PackageLicense>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,5 +30,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 </Project>

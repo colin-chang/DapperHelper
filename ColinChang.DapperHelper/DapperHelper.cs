@@ -34,10 +34,8 @@ namespace Dapper
         /// <returns>The number of rows affected.</returns>
         public int Execute(string sql, object param = null, CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                return cnn.Execute(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return cnn.Execute(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -49,10 +47,8 @@ namespace Dapper
         /// <returns>The number of rows affected.</returns>
         public async Task<int> ExecuteAsync(string sql, object param = null, CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                return await cnn.ExecuteAsync(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return await cnn.ExecuteAsync(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -64,10 +60,8 @@ namespace Dapper
         /// <returns>The first cell returned, as System.Object.</returns>
         public object QueryScalar(string sql, object param = null, CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                return cnn.ExecuteScalar(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return cnn.ExecuteScalar(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -80,10 +74,8 @@ namespace Dapper
         public async Task<object> QueryScalarAsync(string sql, object param = null,
             CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                return await cnn.ExecuteScalarAsync(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return await cnn.ExecuteScalarAsync(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -98,10 +90,8 @@ namespace Dapper
         public IEnumerable<T> Query<T>(string sql, object param = null, CommandType? commandType = null,
             bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return cnn.Query<T>(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return cnn.Query<T>(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -116,10 +106,8 @@ namespace Dapper
         public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object param = null,
             CommandType? commandType = null, bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return await cnn.QueryAsync<T>(sql, param, commandType: commandType);
-            }
+            using var cnn = Cnn;
+            return await cnn.QueryAsync<T>(sql, param, commandType: commandType);
         }
 
         /// <summary>
@@ -138,11 +126,9 @@ namespace Dapper
             Func<TFirst, TSecond, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return cnn.Query(sql, map, param, commandType: commandType,
-                    buffered: buffered);
-            }
+            using var cnn = Cnn;
+            return cnn.Query(sql, map, param, commandType: commandType,
+                buffered: buffered);
         }
 
         /// <summary>
@@ -161,11 +147,9 @@ namespace Dapper
             Func<TFirst, TSecond, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return await cnn.QueryAsync(sql, map, param, commandType: commandType,
-                    buffered: buffered);
-            }
+            using var cnn = Cnn;
+            return await cnn.QueryAsync(sql, map, param, commandType: commandType,
+                buffered: buffered);
         }
 
         /// <summary>
@@ -176,20 +160,18 @@ namespace Dapper
         /// <param name="param">The parameters to use for this query.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         /// <param name="buffered">Whether to buffer the results in memory.</param>
-        /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
-        /// <typeparam name="TSecond">The second type in the recordset.</typeparam>
-        /// <typeparam name="TThird">The third type in the recordset.</typeparam>
+        /// <typeparam name="TFirst">The first type in the record set.</typeparam>
+        /// <typeparam name="TSecond">The second type in the record set.</typeparam>
+        /// <typeparam name="TThird">The third type in the record set.</typeparam>
         /// <typeparam name="TReturn">The combined type to return.</typeparam>
         /// <returns>An enumerable of TReturn.</returns>
         public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string sql,
             Func<TFirst, TSecond, TThird, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return cnn.Query(sql, map, param, commandType: commandType,
-                    buffered: buffered);
-            }
+            using var cnn = Cnn;
+            return cnn.Query(sql, map, param, commandType: commandType,
+                buffered: buffered);
         }
 
         /// <summary>
@@ -200,20 +182,18 @@ namespace Dapper
         /// <param name="param">The parameters to use for this query.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         /// <param name="buffered">Whether to buffer the results in memory.</param>
-        /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
-        /// <typeparam name="TSecond">The second type in the recordset.</typeparam>
-        /// <typeparam name="TThird">The third type in the recordset.</typeparam>
+        /// <typeparam name="TFirst">The first type in the record set.</typeparam>
+        /// <typeparam name="TSecond">The second type in the record set.</typeparam>
+        /// <typeparam name="TThird">The third type in the record set.</typeparam>
         /// <typeparam name="TReturn">The combined type to return.</typeparam>
         /// <returns>An enumerable of TReturn.</returns>
         public async Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(string sql,
             Func<TFirst, TSecond, TThird, TReturn> map, object param = null, CommandType? commandType = null,
             bool buffered = true)
         {
-            using (var cnn = Cnn)
-            {
-                return await cnn.QueryAsync(sql, map, param, commandType: commandType,
-                    buffered: buffered);
-            }
+            using var cnn = Cnn;
+            return await cnn.QueryAsync(sql, map, param, commandType: commandType,
+                buffered: buffered);
         }
 
         /// <summary>
@@ -226,15 +206,13 @@ namespace Dapper
         public IEnumerable<IEnumerable<object>> QueryMultiple(IEnumerable<string> sqls, object param = null,
             CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
-                var results = new IEnumerable<object>[sqls.Count()];
-                for (var i = 0; i < sqls.Count(); i++)
-                    results[i] = reader.Read();
+            using var cnn = Cnn;
+            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            var results = new IEnumerable<object>[sqls.Count()];
+            for (var i = 0; i < sqls.Count(); i++)
+                results[i] = reader.Read();
 
-                return results;
-            }
+            return results;
         }
 
         /// <summary>
@@ -247,15 +225,13 @@ namespace Dapper
         public async Task<IEnumerable<IEnumerable<object>>> QueryMultipleAsync(IEnumerable<string> sqls,
             object param = null, CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
-                var results = new IEnumerable<object>[sqls.Count()];
-                for (var i = 0; i < sqls.Count(); i++)
-                    results[i] = await reader.ReadAsync();
+            using var cnn = Cnn;
+            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            var results = new IEnumerable<object>[sqls.Count()];
+            for (var i = 0; i < sqls.Count(); i++)
+                results[i] = await reader.ReadAsync();
 
-                return results;
-            }
+            return results;
         }
 
         /// <summary>
@@ -270,14 +246,12 @@ namespace Dapper
         public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2) QueryMultiple<TFirst, TSecond>(
             IEnumerable<string> sqls, object param = null, CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
-                var result1 = reader.Read<TFirst>();
-                var result2 = reader.Read<TSecond>();
+            using var cnn = Cnn;
+            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = reader.Read<TFirst>();
+            var result2 = reader.Read<TSecond>();
 
-                return (result1, result2);
-            }
+            return (result1, result2);
         }
 
         /// <summary>
@@ -286,21 +260,19 @@ namespace Dapper
         /// <param name="sqls">The SQL to execute for this query.</param>
         /// <param name="param">The parameters to use for this query.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
-        /// <typeparam name="TFirst">The type of the first sql recordset.</typeparam>
-        /// <typeparam name="TSecond">The type of the second sql recordset.</typeparam>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
         /// <returns>Multiple result sets</returns>
         public async Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2)>
             QueryMultipleAsync<TFirst, TSecond>(IEnumerable<string> sqls, object param = null,
                 CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
-                var result1 = await reader.ReadAsync<TFirst>();
-                var result2 = await reader.ReadAsync<TSecond>();
+            using var cnn = Cnn;
+            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = await reader.ReadAsync<TFirst>();
+            var result2 = await reader.ReadAsync<TSecond>();
 
-                return (result1, result2);
-            }
+            return (result1, result2);
         }
 
         /// <summary>
@@ -309,23 +281,21 @@ namespace Dapper
         /// <param name="sqls">The SQL to execute for this query.</param>
         /// <param name="param">The parameters to use for this query.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
-        /// <typeparam name="TFirst">The type of the first sql recordset.</typeparam>
-        /// <typeparam name="TSecond">The type of the second sql recordset.</typeparam>
-        /// <typeparam name="TThird">The type of the third sql recordset.</typeparam>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
         /// <returns>Multiple result sets</returns>
         public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)
             QueryMultiple<TFirst, TSecond, TThird>(IEnumerable<string> sqls, object param = null,
                 CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
-                var result1 = reader.Read<TFirst>();
-                var result2 = reader.Read<TSecond>();
-                var result3 = reader.Read<TThird>();
+            using var cnn = Cnn;
+            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = reader.Read<TFirst>();
+            var result2 = reader.Read<TSecond>();
+            var result3 = reader.Read<TThird>();
 
-                return (result1, result2, result3);
-            }
+            return (result1, result2, result3);
         }
 
         /// <summary>
@@ -334,24 +304,132 @@ namespace Dapper
         /// <param name="sqls">The SQL to execute for this query.</param>
         /// <param name="param">The parameters to use for this query.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
-        /// <typeparam name="TFirst">The type of the first sql recordset.</typeparam>
-        /// <typeparam name="TSecond">The type of the second sql recordset.</typeparam>
-        /// <typeparam name="TThird">The type of the third sql recordset.</typeparam>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
         /// <returns>Multiple result sets</returns>
         public async
             Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3)>
             QueryMultipleAsync<TFirst, TSecond, TThird>(IEnumerable<string> sqls, object param = null,
                 CommandType? commandType = null)
         {
-            using (var cnn = Cnn)
-            {
-                var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
-                var result1 = await reader.ReadAsync<TFirst>();
-                var result2 = await reader.ReadAsync<TSecond>();
-                var result3 = await reader.ReadAsync<TThird>();
+            using var cnn = Cnn;
+            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = await reader.ReadAsync<TFirst>();
+            var result2 = await reader.ReadAsync<TSecond>();
+            var result3 = await reader.ReadAsync<TThird>();
 
-                return (result1, result2, result3);
-            }
+            return (result1, result2, result3);
+        }
+
+        /// <summary>
+        /// Execute a command that returns multiple result sets, and access each in turn.
+        /// </summary>
+        /// <param name="sqls">The SQL to execute for this query.</param>
+        /// <param name="param">The parameters to use for this query.</param>
+        /// <param name="commandType">Is it a stored proc or a batch?</param>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
+        /// <typeparam name="TFourth">The type of the fourth sql record set.</typeparam>
+        /// <returns>Multiple result sets</returns>
+        public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3,
+            IEnumerable<TFourth> Result4)
+            QueryMultiple<TFirst, TSecond, TThird, TFourth>(IEnumerable<string> sqls, object param = null,
+                CommandType? commandType = null)
+        {
+            using var cnn = Cnn;
+            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = reader.Read<TFirst>();
+            var result2 = reader.Read<TSecond>();
+            var result3 = reader.Read<TThird>();
+            var result4 = reader.Read<TFourth>();
+
+            return (result1, result2, result3, result4);
+        }
+
+        /// <summary>
+        /// Execute a command that returns multiple result sets, and access each in turn.
+        /// </summary>
+        /// <param name="sqls">The SQL to execute for this query.</param>
+        /// <param name="param">The parameters to use for this query.</param>
+        /// <param name="commandType">Is it a stored proc or a batch?</param>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
+        /// <typeparam name="TFourth">The type of the fourth sql record set.</typeparam>
+        /// <returns>Multiple result sets</returns>
+        public async
+            Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3,
+                IEnumerable<TFourth> Result4)>
+            QueryMultipleAsync<TFirst, TSecond, TThird, TFourth>(IEnumerable<string> sqls, object param = null,
+                CommandType? commandType = null)
+        {
+            using var cnn = Cnn;
+            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = await reader.ReadAsync<TFirst>();
+            var result2 = await reader.ReadAsync<TSecond>();
+            var result3 = await reader.ReadAsync<TThird>();
+            var result4 = await reader.ReadAsync<TFourth>();
+
+            return (result1, result2, result3, result4);
+        }
+
+        /// <summary>
+        /// Execute a command that returns multiple result sets, and access each in turn.
+        /// </summary>
+        /// <param name="sqls">The SQL to execute for this query.</param>
+        /// <param name="param">The parameters to use for this query.</param>
+        /// <param name="commandType">Is it a stored proc or a batch?</param>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
+        /// <typeparam name="TFourth">The type of the fourth sql record set.</typeparam>
+        /// <typeparam name="TFifth">The type of the fifth sql record set.</typeparam>
+        /// <returns>Multiple result sets</returns>
+        public (IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3,
+            IEnumerable<TFourth> Result4, IEnumerable<TFifth> Result5)
+            QueryMultiple<TFirst, TSecond, TThird, TFourth, TFifth>(IEnumerable<string> sqls, object param = null,
+                CommandType? commandType = null)
+        {
+            using var cnn = Cnn;
+            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = reader.Read<TFirst>();
+            var result2 = reader.Read<TSecond>();
+            var result3 = reader.Read<TThird>();
+            var result4 = reader.Read<TFourth>();
+            var result5 = reader.Read<TFifth>();
+
+            return (result1, result2, result3, result4, result5);
+        }
+
+        /// <summary>
+        /// Execute a command that returns multiple result sets, and access each in turn.
+        /// </summary>
+        /// <param name="sqls">The SQL to execute for this query.</param>
+        /// <param name="param">The parameters to use for this query.</param>
+        /// <param name="commandType">Is it a stored proc or a batch?</param>
+        /// <typeparam name="TFirst">The type of the first sql record set.</typeparam>
+        /// <typeparam name="TSecond">The type of the second sql record set.</typeparam>
+        /// <typeparam name="TThird">The type of the third sql record set.</typeparam>
+        /// <typeparam name="TFourth">The type of the fourth sql record set.</typeparam>
+        /// <typeparam name="TFifth">The type of the fifth sql record set.</typeparam> 
+        /// <returns>Multiple result sets</returns>
+        public async
+            Task<(IEnumerable<TFirst> Result1, IEnumerable<TSecond> Result2, IEnumerable<TThird> Result3,
+                IEnumerable<TFourth> Result4, IEnumerable<TFifth> Result5)>
+            QueryMultipleAsync<TFirst, TSecond, TThird, TFourth, TFifth>(IEnumerable<string> sqls, object param = null,
+                CommandType? commandType = null)
+        {
+            using var cnn = Cnn;
+            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            var result1 = await reader.ReadAsync<TFirst>();
+            var result2 = await reader.ReadAsync<TSecond>();
+            var result3 = await reader.ReadAsync<TThird>();
+            var result4 = await reader.ReadAsync<TFourth>();
+            var result5 = await reader.ReadAsync<TFifth>();
+
+            return (result1, result2, result3, result4, result5);
         }
 
         /// <summary>
@@ -361,25 +439,23 @@ namespace Dapper
         /// <returns>The number of rows affected.</returns>
         public int ExecuteTransaction(IEnumerable<SqlScript> scripts)
         {
-            using (var cnn = Cnn)
+            using var cnn = Cnn;
+            var count = 0;
+            IDbTransaction tran = null;
+            try
             {
-                var count = 0;
-                IDbTransaction tran = null;
-                try
-                {
-                    cnn.Open();
-                    tran = cnn.BeginTransaction();
-                    foreach (var script in scripts)
-                        count += cnn.Execute(script.Sql, script.Param, tran, commandType: script.CommandType);
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                count += scripts.Sum(script =>
+                    cnn.Execute(script.Sql, script.Param, tran, commandType: script.CommandType));
 
-                    tran.Commit();
-                    return count;
-                }
-                catch
-                {
-                    tran?.Rollback();
-                    return count;
-                }
+                tran.Commit();
+                return count;
+            }
+            catch
+            {
+                tran?.Rollback();
+                return count;
             }
         }
 
@@ -389,20 +465,18 @@ namespace Dapper
         /// <param name="transaction">transaction operation</param>
         public void ExecuteTransaction(Action<IDbConnection> transaction)
         {
-            using (var cnn = Cnn)
+            using var cnn = Cnn;
+            IDbTransaction tran = null;
+            try
             {
-                IDbTransaction tran = null;
-                try
-                {
-                    cnn.Open();
-                    tran = cnn.BeginTransaction();
-                    transaction(cnn);
-                    tran.Commit();
-                }
-                catch
-                {
-                    tran?.Rollback();
-                }
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                transaction(cnn);
+                tran.Commit();
+            }
+            catch
+            {
+                tran?.Rollback();
             }
         }
 
@@ -414,22 +488,20 @@ namespace Dapper
         /// <returns>return value of the transaction operation</returns>
         public TResult ExecuteTransaction<TResult>(Func<IDbConnection, TResult> transaction)
         {
-            using (var cnn = Cnn)
+            using var cnn = Cnn;
+            IDbTransaction tran = null;
+            try
             {
-                IDbTransaction tran = null;
-                try
-                {
-                    cnn.Open();
-                    tran = cnn.BeginTransaction();
-                    var result = transaction(cnn);
-                    tran.Commit();
-                    return result;
-                }
-                catch
-                {
-                    tran?.Rollback();
-                    return default(TResult);
-                }
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                var result = transaction(cnn);
+                tran.Commit();
+                return result;
+            }
+            catch
+            {
+                tran?.Rollback();
+                return default(TResult);
             }
         }
 
@@ -440,26 +512,24 @@ namespace Dapper
         /// <returns>The number of rows affected.</returns>
         public async Task<int> ExecuteTransactionAsync(IEnumerable<SqlScript> scripts)
         {
-            using (var cnn = Cnn)
+            using var cnn = Cnn;
+            var count = 0;
+            IDbTransaction tran = null;
+            try
             {
-                var count = 0;
-                IDbTransaction tran = null;
-                try
-                {
-                    cnn.Open();
-                    tran = cnn.BeginTransaction();
-                    foreach (var script in scripts)
-                        count += await cnn.ExecuteAsync(script.Sql, script.Param, tran,
-                            commandType: script.CommandType);
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                foreach (var script in scripts)
+                    count += await cnn.ExecuteAsync(script.Sql, script.Param, tran,
+                        commandType: script.CommandType);
 
-                    tran.Commit();
-                    return count;
-                }
-                catch
-                {
-                    tran?.Rollback();
-                    return count;
-                }
+                tran.Commit();
+                return count;
+            }
+            catch
+            {
+                tran?.Rollback();
+                return count;
             }
         }
     }
