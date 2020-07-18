@@ -455,7 +455,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
-                return count;
+                return 0;
             }
         }
 
@@ -529,7 +529,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
-                return count;
+                return 0;
             }
         }
     }
