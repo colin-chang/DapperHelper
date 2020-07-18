@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Dapper
@@ -207,7 +208,7 @@ namespace Dapper
             CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
             var results = new IEnumerable<object>[sqls.Count()];
             for (var i = 0; i < sqls.Count(); i++)
                 results[i] = reader.Read();
@@ -226,7 +227,7 @@ namespace Dapper
             object param = null, CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
             var results = new IEnumerable<object>[sqls.Count()];
             for (var i = 0; i < sqls.Count(); i++)
                 results[i] = await reader.ReadAsync();
@@ -247,7 +248,7 @@ namespace Dapper
             IEnumerable<string> sqls, object param = null, CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
             var result1 = reader.Read<TFirst>();
             var result2 = reader.Read<TSecond>();
 
@@ -268,7 +269,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
             var result1 = await reader.ReadAsync<TFirst>();
             var result2 = await reader.ReadAsync<TSecond>();
 
@@ -290,7 +291,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
             var result1 = reader.Read<TFirst>();
             var result2 = reader.Read<TSecond>();
             var result3 = reader.Read<TThird>();
@@ -314,7 +315,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
             var result1 = await reader.ReadAsync<TFirst>();
             var result2 = await reader.ReadAsync<TSecond>();
             var result3 = await reader.ReadAsync<TThird>();
@@ -339,7 +340,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
             var result1 = reader.Read<TFirst>();
             var result2 = reader.Read<TSecond>();
             var result3 = reader.Read<TThird>();
@@ -366,7 +367,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
             var result1 = await reader.ReadAsync<TFirst>();
             var result2 = await reader.ReadAsync<TSecond>();
             var result3 = await reader.ReadAsync<TThird>();
@@ -393,7 +394,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = cnn.QueryMultiple(string.Join(";", sqls), param, commandType: commandType);
             var result1 = reader.Read<TFirst>();
             var result2 = reader.Read<TSecond>();
             var result3 = reader.Read<TThird>();
@@ -422,7 +423,7 @@ namespace Dapper
                 CommandType? commandType = null)
         {
             using var cnn = Cnn;
-            var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
+            using var reader = await cnn.QueryMultipleAsync(string.Join(";", sqls), param, commandType: commandType);
             var result1 = await reader.ReadAsync<TFirst>();
             var result2 = await reader.ReadAsync<TSecond>();
             var result3 = await reader.ReadAsync<TThird>();
@@ -433,7 +434,7 @@ namespace Dapper
         }
 
         /// <summary>
-        /// Execute a nonquery transaction.
+        /// Execute a non-query transaction.
         /// </summary>
         /// <param name="scripts">The 'SqlScript' set of this transaction to execute.</param>
         /// <returns>The number of rows affected.</returns>
@@ -460,6 +461,34 @@ namespace Dapper
         }
 
         /// <summary>
+        /// Execute a non-query transaction asynchronously.
+        /// </summary>
+        /// <param name="scripts">The 'SqlScript' set of this transaction to execute.</param>
+        /// <returns>The number of rows affected.</returns>
+        public async Task<int> ExecuteTransactionAsync(IEnumerable<SqlScript> scripts)
+        {
+            using var cnn = Cnn;
+            var count = 0;
+            IDbTransaction tran = null;
+            try
+            {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                foreach (var script in scripts)
+                    count += await cnn.ExecuteAsync(script.Sql, script.Param, tran,
+                        commandType: script.CommandType);
+
+                tran.Commit();
+                return count;
+            }
+            catch
+            {
+                tran?.Rollback();
+                return 0;
+            }
+        }
+
+        /// <summary>
         /// Execute a transaction with the specify operation inside
         /// </summary>
         /// <param name="transaction">transaction operation</param>
@@ -471,6 +500,9 @@ namespace Dapper
             {
                 cnn.Open();
                 tran = cnn.BeginTransaction();
+                if (transaction.Method.IsDefined(typeof(AsyncStateMachineAttribute), false))
+                    throw new NotSupportedException(
+                        "asynchronous Action<IDbConnection> is not awaitable nor supported, please use Func<IDbConnection,Task> instead");
                 transaction(cnn);
                 tran.Commit();
             }
@@ -495,41 +527,17 @@ namespace Dapper
                 cnn.Open();
                 tran = cnn.BeginTransaction();
                 var result = transaction(cnn);
+
+                if (transaction.Method.IsDefined(typeof(AsyncStateMachineAttribute), false))
+                    (result as Task)?.Wait();
+
                 tran.Commit();
                 return result;
             }
             catch
             {
                 tran?.Rollback();
-                return default(TResult);
-            }
-        }
-
-        /// <summary>
-        /// Execute a nonquery transaction asynchronously.
-        /// </summary>
-        /// <param name="scripts">The 'SqlScript' set of this transaction to execute.</param>
-        /// <returns>The number of rows affected.</returns>
-        public async Task<int> ExecuteTransactionAsync(IEnumerable<SqlScript> scripts)
-        {
-            using var cnn = Cnn;
-            var count = 0;
-            IDbTransaction tran = null;
-            try
-            {
-                cnn.Open();
-                tran = cnn.BeginTransaction();
-                foreach (var script in scripts)
-                    count += await cnn.ExecuteAsync(script.Sql, script.Param, tran,
-                        commandType: script.CommandType);
-
-                tran.Commit();
-                return count;
-            }
-            catch
-            {
-                tran?.Rollback();
-                return 0;
+                return default;
             }
         }
     }
