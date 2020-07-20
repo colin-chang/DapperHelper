@@ -9,12 +9,15 @@
     <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
-    <Version>1.1.3</Version>
+    <Version>1.2.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>overload two more "QueryMultiple" and "QueryMultipleAsync" methods</PackageReleaseNotes>
+    <PackageReleaseNotes>1.fix bugs of async transactions
+2.publish some useful extensions for IDbConnection
+3.overload more "QueryMultiple" methods
+4.add "QueryMultipleReader" and "QueryMultipleReaderAsync" methods</PackageReleaseNotes>
     <PackageIcon>icon.png</PackageIcon>
-    <AssemblyVersion>1.1.3.0</AssemblyVersion>
-    <FileVersion>1.1.3.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <Title>DapperHelper</Title>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>default</LangVersion>
@@ -30,6 +33,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\icon.png" Pack="true" PackagePath=""/>
+    <None Include="..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
