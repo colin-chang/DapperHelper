@@ -13,4 +13,4 @@ dotnet add package ColinChang.DapperHelper
 
 About how it works and some simple introductions of Dapper can be found by the link below.
 
-https://netcore.colinchang.net/pages/dapper.html
+https://ccstudio.org/dotnet/others/dapper.html
