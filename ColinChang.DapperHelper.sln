@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinChang.DapperHelper.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinChang.DapperHelper", "ColinChang.DapperHelper\ColinChang.DapperHelper.csproj", "{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinChang.DapperHelper.Sample", "ColinChang.DapperHelper.Sample\ColinChang.DapperHelper.Sample.csproj", "{B47386E2-2326-4F46-88F1-71627247E2BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}.Release|x64.Build.0 = Release|Any CPU
 		{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}.Release|x86.ActiveCfg = Release|Any CPU
 		{3BA00B1C-ADB7-41A6-B6E6-5E6E3FBE51E5}.Release|x86.Build.0 = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|x64.Build.0 = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Debug|x86.Build.0 = Debug|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|x64.ActiveCfg = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|x64.Build.0 = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|x86.ActiveCfg = Release|Any CPU
+		{B47386E2-2326-4F46-88F1-71627247E2BB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
