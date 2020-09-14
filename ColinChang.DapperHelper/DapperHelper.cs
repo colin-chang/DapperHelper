@@ -374,7 +374,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
-                return 0;
+                throw;
             }
             finally
             {
@@ -403,7 +403,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
-                return 0;
+                throw;
             }
             finally
             {
@@ -430,6 +430,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
+                throw;
             }
             finally
             {
@@ -458,7 +459,7 @@ namespace Dapper
             catch
             {
                 tran?.Rollback();
-                return default;
+                throw;
             }
             finally
             {

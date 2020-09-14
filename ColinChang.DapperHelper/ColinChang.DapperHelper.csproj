@@ -1,42 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Authors>Colin Chang</Authors>
-    <Description>A Dapper wrapper which provides some useful helper for common data operations.</Description>
-    <Copyright>https://ccstudio.org</Copyright>
-    <PackageProjectUrl>https://github.com/colin-chang/DapperHelper</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
-    <Version>1.2.1</Version>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes>1.add IRedisHelper interface,RedisHelperOptions
-2.overload a new constrcutor with RedisHelperOptions
-3.add a new AddDapperHelper&lt;TConnection&gt; method
-    </PackageReleaseNotes>
-    <PackageIcon>icon.png</PackageIcon>
-    <AssemblyVersion>1.2.1.0</AssemblyVersion>
-    <FileVersion>1.2.1.0</FileVersion>
-    <Title>DapperHelper</Title>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <LangVersion>default</LangVersion>
-    <PackageLicense>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/LICENSE</PackageLicense>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Authors>Colin Chang</Authors>
+        <Description>A Dapper wrapper which provides some useful helper for common data operations.</Description>
+        <Copyright>https://ccstudio.org</Copyright>
+        <PackageProjectUrl>https://github.com/colin-chang/DapperHelper</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/colin-chang/DapperHelper</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReleaseNotes>throw all transaction exceptions
+        </PackageReleaseNotes>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageVersion>1.2.2</PackageVersion>
+        <Title>DapperHelper</Title>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageLicense>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/LICENSE</PackageLicense>
+    </PropertyGroup>
 
-  <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.7" />
-      <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
-      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.7" />
-      <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="3.1.7" />
-    <PackageReference Include="Dapper" Version="2.0.35" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.7"/>
+        <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="3.1.7"/>
+        <PackageReference Include="Dapper" Version="2.0.35"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\icon.png" Pack="true" PackagePath="" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\icon.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
 </Project>
