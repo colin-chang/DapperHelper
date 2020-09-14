@@ -444,21 +444,24 @@ namespace Dapper
         {
             var cnn = Cnn;
             IDbTransaction tran = null;
+            var isAsync = transaction.Method.IsDefined(typeof(AsyncStateMachineAttribute), false);
             try
             {
                 cnn.Open();
                 tran = cnn.BeginTransaction();
                 var result = transaction(cnn);
 
-                if (transaction.Method.IsDefined(typeof(AsyncStateMachineAttribute), false))
+                if (isAsync)
                     (result as Task)?.Wait();
 
                 tran.Commit();
                 return result;
             }
-            catch
+            catch (Exception e)
             {
                 tran?.Rollback();
+                if (isAsync && e.InnerException != null)
+                    throw e.InnerException;
                 throw;
             }
             finally

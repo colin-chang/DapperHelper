@@ -10,10 +10,10 @@
         <RepositoryType>Git</RepositoryType>
         <PackageTags>dapper,dapperplus,dapperhelper,dapper.net</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReleaseNotes>throw all transaction exceptions
+        <PackageReleaseNotes>throw actual exceptions when execute a async func in a transaction
         </PackageReleaseNotes>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageVersion>1.2.2</PackageVersion>
+        <PackageVersion>1.2.3</PackageVersion>
         <Title>DapperHelper</Title>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageLicense>https://raw.githubusercontent.com/colin-chang/DapperHelper/master/LICENSE</PackageLicense>
