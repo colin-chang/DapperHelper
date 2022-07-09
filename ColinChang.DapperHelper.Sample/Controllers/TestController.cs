@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace ColinChang.DapperHelper.Sample.Controllers
 {
@@ -15,7 +11,7 @@ namespace ColinChang.DapperHelper.Sample.Controllers
         [HttpGet]
         public async Task<long> Get([FromServices] IDapperHelper dapper)
         {
-            return (long) await dapper.QueryScalarAsync("SELECT COUNT(1) FROM Worker");
+            return (long)await dapper.QueryScalarAsync("SELECT COUNT(1) FROM Worker");
         }
     }
 }
